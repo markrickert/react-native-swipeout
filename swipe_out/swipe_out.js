@@ -24,7 +24,7 @@ var Swipeout = React.createClass({
   getInitialState () {
     return {
       autoClose: this.props.autoClose || false,
-      autoCloseAfterPressButton: this.props.autoCloseAfterPressButton || true,
+      autoCloseAfterPressButton: this.props.autoCloseAfterPressButton === false ? false : true,
       btnWidth: 0,
       btnsLeftWidth: 0,
       btnsRightWidth: 0,
@@ -58,35 +58,10 @@ var Swipeout = React.createClass({
       this.props.onOpen(this.props.sectionID, this.props.rowID)
     }
     this.refs.swipeoutContent.measure((ox, oy, width, height) => {
-      var btnsRightWidth = 0;
-      if ( this.props.right && this.props.right.length ) {
-        this.props.right.forEach(function(el) {
-          if( el.styleButton && el.styleButton.width )
-            btnsRightWidth += el.styleButton.width;
-          else
-            btnsRightWidth += width / 5;
-        });
-      }
-
-
-      // if ( this.props.right && this.props.right.length ) {
-      //   // var bw = [width / 5];
-      //   // this.props.right.forEach(function(el) {
-      //   //   if( el.styleButton && el.styleButton.width ) bw.push(el.styleButton.width);
-      //   // });
-      //   // var w = Math.max(...bw);
-      //   var w = 0;
-      //   this.props.right.forEach(function(el) {
-      //     if( el.styleButton && el.styleButton.width ) bw.push(el.styleButton.width);
-      //   });
-      // }
-      // else
-      //   var w = width / 5;
       this.setState({
-        btnWidth: width / 5,
-        btnsLeftWidth: this.props.left ? w * this.props.left.length : 0,
-        // btnsRightWidth: this.props.right ? w * this.props.right.length : 0,
-        btnsRightWidth: btnsRightWidth,
+        btnWidth: (width / 5),
+        btnsLeftWidth: this.props.left ? (width / 5) * this.props.left.length : 0,
+        btnsRightWidth: this.props.right ? (width / 5) * this.props.right.length : 0,
         swiping: true,
         timeStart: (new Date()).getTime(),
       })
