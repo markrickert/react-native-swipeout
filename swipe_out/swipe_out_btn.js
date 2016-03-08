@@ -21,14 +21,9 @@ class SwipeoutBtn extends Component {
         text,
         styleButton,
         height,
+        width,
         styleText
     } = this.props;
-
-    let {
-      width
-    } = this.props;
-
-    if ( styleButton && styleButton.width ) width = styleButton.width;
 
     let styleSwipeoutBtn = [styles.swipeoutBtn]
     let styleSwipeoutBtnComponent = [];
@@ -58,7 +53,7 @@ class SwipeoutBtn extends Component {
     return (
         <TouchableHighlight
             onPress={this.props.onPress}
-            style={[styles.swipeoutBtnTouchable, {flex: 0}]}
+            style={styles.swipeoutBtnTouchable}
             underlayColor={this.props.underlayColor}>
 
           <View style={styleSwipeoutBtn}>
