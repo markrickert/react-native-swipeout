@@ -1,6 +1,6 @@
 {
   "name": "react-native-swipeout",
-  "version": "2.0.12",
+  "version": "2.3.0",
   "description": "iOS-style swipeout buttons behind component",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,6 @@
   },
   "homepage": "https://github.com/dancormier/react-native-swipeout",
   "dependencies": {
-    "react-tween-state": "^0.1.5"
+    "react-tween-state": "^0.1.3"
   }
 }
