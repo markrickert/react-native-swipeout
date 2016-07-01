@@ -1,11 +1,11 @@
-import React, {
-    Component,
+import {
     PanResponder,
     TouchableHighlight,
     StyleSheet,
     Text,
     View
 } from 'react-native'
+import React, {Component} from 'react'
 import tweenState from 'react-tween-state';
 import SwipeoutBtn from './swipe_out_btn';
 import styles from './styles.js';

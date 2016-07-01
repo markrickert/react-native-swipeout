@@ -1,11 +1,11 @@
-import React, {
-    Component,
+import {
     Image,
     PanResponder,
     TouchableHighlight,
     Text,
     View
 } from 'react-native'
+import React, {Component} from 'react'
 import styles from './styles.js'
 
 class SwipeoutBtn extends Component {
