@@ -23,8 +23,8 @@ var Swipeout = React.createClass({
   },
   getInitialState () {
     return {
-      autoClose: this.props.autoClose || false,
-      autoCloseAfterPressButton: this.props.autoCloseAfterPressButton === false ? false : true,
+      autoClose: true,
+      autoCloseAfterPressButton: this.props.autoCloseAfterPressButton,
       btnWidth: 0,
       btnsLeftWidth: 0,
       btnsRightWidth: 0,
