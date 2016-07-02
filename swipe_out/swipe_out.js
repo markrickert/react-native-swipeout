@@ -50,7 +50,35 @@ var Swipeout = React.createClass({
   }
   ,
   componentWillReceiveProps (nextProps) {
-    if ( nextProps.close ) this._close()
+    if ( nextProps.close ) this._close();
+    if ( nextProps.openLeft ) this._openLeft();
+    if ( nextProps.openRight ) this._openRight();
+  }
+  ,
+  _buttonsRightWidth () {
+    let w = 0;
+     if ( this.props.right && this.props.right.length ) {
+       this.props.right.forEach(function(el) {
+         if( el.styleButton && el.styleButton.width )
+           w += el.styleButton.width;
+         else
+           w += width / 5;
+       });
+     }
+     return w;
+  }
+  ,
+  _buttonsLeftWidth () {
+    let w = 0;
+     if ( this.props.left && this.props.left.length ) {
+       this.props.left.forEach(function(el) {
+         if( el.styleButton && el.styleButton.width )
+           w += el.styleButton.width;
+         else
+           w += width / 5;
+       });
+     }
+     return w;
   }
   ,
   _handlePanResponderGrant (e:Object, gestureState:Object) {
@@ -58,15 +86,7 @@ var Swipeout = React.createClass({
       this.props.onOpen(this.props.sectionID, this.props.rowID)
     }
     this.refs.swipeoutContent.measure((ox, oy, width, height) => {
-     var btnsRightWidth = 0;
-      if ( this.props.right && this.props.right.length ) {
-        this.props.right.forEach(function(el) {
-          if( el.styleButton && el.styleButton.width )
-            btnsRightWidth += el.styleButton.width;
-          else
-            btnsRightWidth += width / 5;
-        });
-      }
+     var btnsRightWidth = this._buttonsRightWidth();
 
       // if ( this.props.right && this.props.right.length ) {
       //   // var bw = [width / 5];
@@ -197,6 +217,28 @@ var Swipeout = React.createClass({
       openedLeft: false
     })
     this.props.closeSwipeoutCallback()
+  }
+  ,
+  _openLeft () {
+    // TODO
+  }
+  ,
+  _openRight () {
+    this.refs.swipeoutContent.measure((ox, oy, width, height) => {
+      const btnsRightWidth = this._buttonsRightWidth();
+
+      this.setState({
+        btnWidth: (width/5),
+        btnsLeftWidth: this.props.left ? (width/5)*this.props.left.length : 0,
+        btnsRightWidth: btnsRightWidth,
+        contentHeight: height,
+        contentWidth: width,
+      });
+
+      // open swipeout right
+      this._tweenContent('contentPos', -btnsRightWidth);
+      this.setState({ contentPos: -btnsRightWidth, openedLeft: false, openedRight: true });
+    });
   }
   ,
   render () {
