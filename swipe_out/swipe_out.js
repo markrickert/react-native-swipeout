@@ -35,18 +35,23 @@ var Swipeout = React.createClass({
       swiping: false,
       tweenDuration: 160,
       timeStart: null,
+      disableSwipe: false,
     }
   },
   componentWillMount () {
-    this._panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: (event, gestureState) => true,
-      onMoveShouldSetPanResponder: (event, gestureState) => !(gestureState.dx === 0 || gestureState.dy === 0),
-      onPanResponderGrant: this._handlePanResponderGrant,
-      onPanResponderMove: this._handlePanResponderMove,
-      onPanResponderRelease: this._handlePanResponderEnd,
-      onPanResponderTerminate: this._handlePanResponderEnd,
-      onShouldBlockNativeResponder: (event, gestureState) => true,
-    });
+    if (this.props.disableSwipe) {
+      this._panResponder = {}
+    } else {
+      this._panResponder = PanResponder.create({
+        onStartShouldSetPanResponder: (event, gestureState) => true,
+        onMoveShouldSetPanResponder: (event, gestureState) => !(gestureState.dx === 0 || gestureState.dy === 0),
+        onPanResponderGrant: this._handlePanResponderGrant,
+        onPanResponderMove: this._handlePanResponderMove,
+        onPanResponderRelease: this._handlePanResponderEnd,
+        onPanResponderTerminate: this._handlePanResponderEnd,
+        onShouldBlockNativeResponder: (event, gestureState) => true,
+      });
+    }
   }
   ,
   componentWillReceiveProps (nextProps) {
