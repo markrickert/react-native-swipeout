@@ -33,7 +33,7 @@ var Swipeout = React.createClass({
       contentWidth: 0,
       openedRight: false,
       swiping: false,
-      tweenDuration: 160,
+      tweenDuration: 400,
       timeStart: null,
       disableSwipe: false,
     }
