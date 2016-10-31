@@ -62,6 +62,7 @@ var Swipeout = React.createClass({
   ,
   _buttonsRightWidth () {
     let w = 0;
+    let width = this.state.contentWidth;
      if ( this.props.right && this.props.right.length ) {
        this.props.right.forEach(function(el) {
          if( el.styleButton && el.styleButton.width )
@@ -75,6 +76,7 @@ var Swipeout = React.createClass({
   ,
   _buttonsLeftWidth () {
     let w = 0;
+    let width = this.state.contentWidth;
      if ( this.props.left && this.props.left.length ) {
        this.props.left.forEach(function(el) {
          if( el.styleButton && el.styleButton.width )
